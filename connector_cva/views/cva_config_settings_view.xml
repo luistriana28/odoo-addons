@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    
-    <data>
-        <!-- Form views -->
+    <!-- Form views -->
         <record model='ir.ui.view' id='cva_config_settings_form'>
             <field name='name'>cva_config_settings</field>
             <field name='model'>cva.config.settings</field>
@@ -16,7 +14,7 @@
                     </header>
                     <group>
                         <div>
-                            <label for="id" string="Client number" />
+                            <label for="name" string="Client number" />
                             <field class="oe_inline" name="name"/>
                         </div>
                         <div>
@@ -32,6 +30,7 @@
                 </form>
             </field>
         </record>
+
         <!-- Actions -->
         <record id="action_cva_config_settings" model="ir.actions.act_window">
             <field name="name">CVA</field>
@@ -40,21 +39,19 @@
             <field name="view_mode">form</field>
             <field name="target">inline</field>
         </record>
+
         <!-- Menus -->
         <menuitem id="cva_config_menu" name="CVA" parent="base.menu_custom" sequence="40" groups="connector_cva.cva_group_manager"/>
         <menuitem id="cva_config_settings_menu" name="Settings" parent="cva_config_menu" action="action_cva_config_settings" sequence="0"/>
+
         <!-- Accion Cron -->
-        <record forcecreate="True" id="ir_cron_scheduler_action_update_products" model="ir.cron">
+        <record forcecreate="True" id="ir_cron_action_update_products" model="ir.cron">
             <field name="name">Update Products</field>
-            <field eval="True" name="active"/>
+            <field name="model_id" ref="model_cva_config_settings"/>
             <field name="user_id" ref="base.user_root"/>
             <field name="interval_number">1</field>
             <field name="interval_type">days</field>
             <field name="numbercall">-1</field>
-            <field eval="False" name="doall"/>
-            <field eval="'cva.config.settings'" name="model"/>
-            <field name="function">update_product_cron</field>
-            <field name="args">()</field>
+            <field name="code">model.update_product_cron()</field>
         </record>
-    </data>
 </odoo>

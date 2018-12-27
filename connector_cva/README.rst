@@ -57,6 +57,7 @@ Contributors
 ------------
 
 * Alan Ramos <alan.ramos@jarsa.com.mx>
+* Luis Triana <lt@jarsa.mx>
 
 Maintainer
 ----------
