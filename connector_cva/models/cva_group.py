@@ -6,7 +6,6 @@ from odoo import fields, models
 
 class CvaGroup(models.Model):
     _name = 'cva.group'
-    _description = 'group of CVA'
-    _order = 'name'
+    _description = 'CVA Group'
 
     name = fields.Char(required=True)

@@ -17,7 +17,7 @@ class TestProductTemplate(TransactionCase):
         Define global variables
         """
         super(TestProductTemplate, self).setUp()
-        self.cva = self.env['cva.config.settings']
+        self.cva = self.env['res.config.settings']
         self.xml = requests.get('http://localhost:8069/connector_cva/static/'
                                 'src/xml/test.xml').content
 

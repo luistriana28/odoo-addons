@@ -388,8 +388,8 @@ msgstr "VILLAHERMOSA"
 
 #. module: connector_cva
 #: model:ir.model,name:connector_cva.model_cva_config_settings
-msgid "cva.config.settings"
-msgstr "cva.config.settings"
+msgid "res.config.settings"
+msgstr "res.config.settings"
 
 #. module: connector_cva
 #: model:ir.model,name:connector_cva.model_cva_group

@@ -5,14 +5,13 @@ from odoo import api, models
 
 
 class ProductTemplate(models.Model):
-    _name = 'product.template'
     _inherit = 'product.template'
 
     @api.multi
     def update_price_multi(self, model=None):
         product_list = self.search(
             [('id', 'in', self.env.context['active_ids'])])
-        cva = self.env['cva.config.settings']
+        cva = self.env['res.config.settings']
         user_id = self.env.user.company_id.cva_user
         for product in product_list:
             params = {

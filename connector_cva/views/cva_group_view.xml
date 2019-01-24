@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
         <!-- Form views -->
-        <record id='cva_group_view_form' model='ir.ui.view'>
+    <record id='cva_group_view_form' model='ir.ui.view'>
         <field name="name">cva.group.view.form</field>
         <field name="model">cva.group</field>
         <field name="arch" type="xml">
@@ -17,15 +17,4 @@
             </form>
         </field>
     </record>
-
-        <!-- Actions -->
-        <record id='action_cva_group' model='ir.actions.act_window'>
-            <field name='name'>CVA Group</field>
-            <field name='res_model'>cva.group</field>
-            <field name='view_type'>form</field>
-            <field name='view_mode'>tree,form</field>
-        </record>
-
-        <!-- Menus -->
-        <menuitem id="cva_group_menu" name="CVA Groups" parent="connector_cva.cva_config_menu" action="action_cva_group"/>
 </odoo>

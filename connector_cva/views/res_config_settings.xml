@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <data noupdate="1">
-        <function model="res.config.settings" name="action_res_config_settings"/>
-    </data>
-</odoo>
