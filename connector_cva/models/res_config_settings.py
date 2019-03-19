@@ -45,8 +45,8 @@ class ResConfigSettings(models.TransientModel):
         """
         url = (
             'https://www.grupocva.com/catalogo_clientes_xml/lista_precios.xml')
-        data = requests.get((url), params=params).content
-        import ipdb; ipdb.set_trace()
+        data = requests.get(
+            (url), params=params).content
         root = etree.XML(data)
         return root
 
@@ -70,7 +70,7 @@ class ResConfigSettings(models.TransientModel):
         if not find('imagen'):
             image = False
         else:
-            image = base64.encodestring(
+            image = base64.b64encode(
                 requests.get(find('imagen')).content)
         product = product_obj.create(
             {'name': find('descripcion'),
@@ -94,7 +94,6 @@ class ResConfigSettings(models.TransientModel):
     @api.multi
     def update_product_qty(self, template_id, item):
         change_qty_wiz = self.env['stock.change.product.qty']
-        location_obj = self.env['stock.location']
         product_product = self.env['product.product']
         product_template = self.env['product.template']
         main_location = self.env.user.company_id.cva_main_location.name
@@ -129,18 +128,17 @@ class ResConfigSettings(models.TransientModel):
                 'MonedaPesos': '1',
                 }
             root = self.connect_cva(params=params)
-            if len(root) == 0:
+            if not root >= 1:
                 pass
-            elif len(root) >= 1:
-                for item in root:
-                    if item.findtext('clave') in product_list:
-                        product_template_id = product_template.search([
-                            ('default_code', '=', item.findtext('clave'))])
-                        product_id = product.search([
-                            ('default_code', '=', item.findtext('clave'))])
-                        product_id.standard_price = float(
-                            item.findtext('precio'))
-                        self.update_product_qty(product_template_id.id, item)
+            for item in root:
+                if item.findtext('clave') in product_list:
+                    product_template_id = product_template.search([
+                        ('default_code', '=', item.findtext('clave'))])
+                    product_id = product.search([
+                        ('default_code', '=', item.findtext('clave'))])
+                    product_id.standard_price = float(
+                        item.findtext('precio'))
+                    self.update_product_qty(product_template_id.id, item)
 
     @api.multi
     def get_products(self):
