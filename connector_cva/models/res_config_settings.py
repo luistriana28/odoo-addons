@@ -1,5 +1,4 @@
-# -*- coding: utf-8 -*-
-# © <2016> <Jarsa Sistemas, S.A. de C.V.>
+# © <2019><Luis Triana><Jarsa Sistemas, S.A. de C.V.>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import _, api, fields, models
@@ -47,6 +46,7 @@ class ResConfigSettings(models.TransientModel):
         url = (
             'https://www.grupocva.com/catalogo_clientes_xml/lista_precios.xml')
         data = requests.get((url), params=params).content
+        import ipdb; ipdb.set_trace()
         root = etree.XML(data)
         return root
 
@@ -83,8 +83,7 @@ class ResConfigSettings(models.TransientModel):
                                    find('ficha_tecnica'))),
              'description_sale': find('ficha_comercial'),
              'image_medium': image,
-             'type': 'product',
-             'description_sale': find('ficha_tecnica')
+             'type': 'product'
              })
         product_template_id = product_tempalte_obj.search([
             ('default_code', '=', product.default_code)])

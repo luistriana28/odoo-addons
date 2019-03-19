@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-        <!-- Form views -->
-    <record id='cva_group_view_form' model='ir.ui.view'>
+    <!-- Form views -->
+    <record id="cva_group_view_form" model="ir.ui.view">
         <field name="name">cva.group.view.form</field>
         <field name="model">cva.group</field>
         <field name="arch" type="xml">
