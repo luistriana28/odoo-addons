@@ -1,0 +1,65 @@
+image: vauxoo/odoo-80-image-shippable-auto
+stages:
+  - lint
+  - test
+
+variables:
+    PSQL_VERSION: "9.6"
+    VERSION: "12.0"
+    TRAVIS_PYTHON_VERSION: "2.7"
+    ODOO_REPO: "odoo/odoo"
+    ODOO_BRANCH: "12.0"
+    BASE_IMAGE: "vauxoo/odoo-120-image"
+    COUNTRY: "MX"
+
+
+lint:
+  stage: lint
+  tags:
+    - gitlab-org
+  variables:
+    LINT_CHECK: "1"
+    TESTS: "0"
+  before_script:
+     - git submodule sync --recursive
+     - git submodule update --init --recursive
+  script:
+    - git clone https://github.com/vauxoo/maintainer-quality-tools.git -b master ${HOME}/maintainer-quality-tools
+    - source "${HOME}/maintainer-quality-tools/travis/travis_gitlab_translate_env"
+    - source ${REPO_REQUIREMENTS}/virtualenv/nodejs/bin/activate
+    - source ${REPO_REQUIREMENTS}/virtualenv/python${TRAVIS_PYTHON_VERSION}/bin/activate
+    - export PATH=${HOME}/gitlab_tools:${PATH}
+    - export TRAVIS_BUILD_DIR=$(pwd)
+    - export INCLUDE="company_country,$(cd ${TRAVIS_BUILD_DIR} && ls -d -t -U -m */ | tr -d ' /\n')"
+    - travis_install_nightly
+    - sed -i "s/exclude \= /exclude \= doc,/g" ${HOME}/maintainer-quality-tools/travis/cfg/travis_run_flake8*.cfg
+    - sed -i "/file-not-used/d" ${HOME}/maintainer-quality-tools/travis/cfg/travis_run_pylint_pr.cfg
+    - cp ${HOME}/maintainer-quality-tools/travis/cfg/travis_run_pylint_pr.cfg ${HOME}/maintainer-quality-tools/travis/cfg/travis_run_pylint.cfg && sed -i s/class-camelcase,/class-camelcase,deprecated-openerp-xml-node,old-api7-method-defined,/g ${HOME}/maintainer-quality-tools/travis/cfg/travis_run_pylint.cfg
+    - pylint --load-plugins=pylint.extensions.docparams -d all -e parameter_documentation ${TRAVIS_BUILD_DIR}/*; echo "exit 0"
+    - travis_run_tests
+
+test:
+  stage: test
+  coverage: '/^TOTAL.*\s+(\d+\%)$/'
+  tags:
+    - gitlab-org
+  variables:
+    LINT_CHECK: "0"
+    TESTS: "1"
+    PHANTOMJS_VERSION: "2.1.1"
+  before_script:
+   - git submodule sync --recursive
+   - git submodule update --init --recursive  
+  script:
+    - export TRAVIS_BUILD_DIR=$(pwd)
+     #- export INCLUDE="" TESTS="0" ENTERPRISE="0"  WKHTMLTOPDF_VERSION="0.12.1"
+    - source ${REPO_REQUIREMENTS}/virtualenv/nodejs/bin/activate
+    - source ${REPO_REQUIREMENTS}/virtualenv/python${TRAVIS_PYTHON_VERSION}/bin/activate
+    - git clone https://github.com/vauxoo/maintainer-quality-tools.git -b master ${HOME}/maintainer-quality-tools
+    - export PATH=${HOME}/maintainer-quality-tools/travis:${HOME}/gitlab_tools:${PATH}
+    - travis_install_nightly
+    - sed -i "s/exclude \= /exclude \= doc,/g" ${HOME}/maintainer-quality-tools/travis/cfg/travis_run_flake8*.cfg
+    - sed -i "/file-not-used/d" ${HOME}/maintainer-quality-tools/travis/cfg/travis_run_pylint_pr.cfg
+    - travis_run_tests
+    - travis_after_tests_success || true
+    - coverage report -m --show-missing --rcfile=${TRAVIS_BUILD_DIR}/.coveragerc || true

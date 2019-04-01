@@ -1,21 +1,27 @@
-# -*- coding: utf-8 -*-
-
+# Copyright YEAR(S), AUTHOR(S)
+# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 {
-    'name': "POS LOCK PRICE DISCOUNT",
-    'summary': """
-        Lock change price or discount in Point Of Sale""",
-    'description': """
-        This module add features to lock change price or discount in Point Of Sale using password
-    """,
-    'author': "Aimé Jules Andrinirina",
-    'website': "",
-    'category': 'Point Of Sale',
-    'license': "LGPL-3",
-    'version': '12.0.1.0',
-    'images': ['images/cover.jpg'],
-    'depends': ['base', 'point_of_sale'],
+    'name': 'POS LOCK PRICE DISCOUNT',
+    'summary': 'Lock change price or discount in Point Of Sale',
+    'version': '12.0.1.0.0',
+    'category': 'POS',
+    'website': 'https://odoo-community.org/',
+    'author': 'Aimé Jules Andrinirina, Odoo Community Association (OCA)',
+    'license': 'AGPL-3',
+    'application': False,
+    'installable': True,
+    'external_dependencies': {
+        'python': [],
+        'bin': [],
+    },
+    'depends': [
+        'base',
+        'point_of_sale'
+    ],
     'data': [
         'views/assets.xml',
         'views/pos_config_view.xml',
     ],
+    'demo': [],
+    'qweb': []
 }
