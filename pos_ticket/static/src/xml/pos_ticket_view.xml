@@ -19,8 +19,8 @@
                          <t t-if="widget.pos.company.phone">
                             Phone: <t t-esc="widget.pos.company.phone || ''"/><br />
                         </t>
-                        <t t-esc="moment().format('L LT')"/>
-                        <span style="font-size:14px;font-weight:bold" t-esc="order.name"/>
+                        <t t-esc="moment().format('L LT')"/><br/>
+                        <span style="font-size:15px;font-weight:bold" t-esc="order.name"/>
                     </div>
                     <div style="width: 45%;float: left; ">
                         <img src='/web/binary/company_logo' style="width:100%"/>

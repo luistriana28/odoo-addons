@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 ##############################################################################
 #
 #    Cybrosys Technologies Pvt. Ltd.
@@ -22,9 +21,8 @@
 ##############################################################################
 {
     'name': 'Company Logo In POS Receipt',
-    'summary': """Add Company Logo ,Info & Customer name to POS Ticket""",
-    'version': '12.0.1.0',
-    'description': """Add Company Logo , Info & Customer name to POS Ticket""",
+    'version': '12.0.1.0.0',
+    'description': 'Add Company Logo , Info & Customer name to POS Ticket',
     'author': 'Cybrosys Techno Solutions',
     'company': 'Cybrosys Techno Solutions',
     'website': 'http://www.cybrosys.com',
@@ -36,6 +34,5 @@
     'images': ['static/description/banner.jpg'],
     'demo': [],
     'installable': True,
-    'auto_install': False,
-
+    'auto_install': False
 }

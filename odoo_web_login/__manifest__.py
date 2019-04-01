@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 ##############################################################################
 #
 #    Samples module for Odoo Web Login Screen
@@ -17,18 +16,14 @@
 #
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-#    
 #    Background Source: http://forum.xda-developers.com/showpost.php?p=37322378
 #
 ##############################################################################
 {
     'name': 'Odoo Web Login Screen',
     'summary': 'The new configurable Odoo Web Login Screen',
-    'version': '12.0.1.0',
+    'version': '12.0.1.0.0',
     'category': 'Website',
-    'summary': """
-The new configurable Odoo Web Login Screen
-""",
     'author': "binhnguyenxuan (www.xubi.me)",
     'website': 'http://www.xubi.me',
     'license': 'AGPL-3',
@@ -39,8 +34,7 @@ The new configurable Odoo Web Login Screen
         'templates/website_templates.xml',
         'templates/webclient_templates.xml',
     ],
-    'qweb': [
-    ],
+    'qweb': [],
     'installable': True,
     'application': True,
 }

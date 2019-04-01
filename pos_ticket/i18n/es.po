@@ -27,7 +27,7 @@ msgstr "% descuento"
 #: code:addons/pos_ticket/static/src/xml/pos_ticket_view.xml:15
 #, python-format
 msgid "Cashier:"
-msgstr "Cajero"
+msgstr "Cajero:"
 
 #. module: pos_ticket
 #. openerp-web

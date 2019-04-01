@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
@@ -18,8 +17,9 @@ class PosConfig(models.Model):
             for item in str(self.price_password):
                 try:
                     int(item)
-                except Exception as e:
-                    raise ValidationError(_("The unlock price password should be a number"))
+                except Exception:
+                    raise ValidationError(_(
+                        "The unlock price password should be a number"))
 
     @api.constrains('discount_password')
     def check_discount_password(self):
@@ -27,5 +27,6 @@ class PosConfig(models.Model):
             for item in str(self.discount_password):
                 try:
                     int(item)
-                except Exception as e:
-                    raise ValidationError(_("The unlock discount password should be a number"))
+                except Exception:
+                    raise ValidationError(_(
+                        "The unlock discount password should be a number"))

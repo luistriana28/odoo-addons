@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <data>
     <record id="pos_lock_mode_pos_config_inherit" model="ir.ui.view">
       <field name="name">pos.config.form.pos.sale</field>
       <field name="model">pos.config</field>
@@ -39,5 +38,4 @@
         </sheet>
       </field>
     </record>
-  </data>
 </odoo>
