@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_pack_public_user,product.bundle.public.user,model_product_pack,,1,0,0,0
+access_product_pack_manager,product.bundle.manager,model_product_pack,sales_team.group_sale_salesman_all_leads,1,1,1,1
