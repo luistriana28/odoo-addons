@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+                
+    <!-- Form views -->
+    <record id="res_config_settings_view_form_cva" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inherit.cva</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="40"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="CVA" string="CVA" data-key="connector_cva">
+                        <div id="cva_settings">
+                            <h2>CVA Settings
+                                    <button string="Get products" name="get_products" type="object" icon="fa-plus"/>  
+                                    <button string="Get groups" name="get_groups" type="object" icon="fa-barcode"/>
+                            </h2>
+                            <div class="row mt16 o_settings_container">
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">CVA User Number</span>
+                                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.user_admin" role="img"/>
+                                        <div class="text-muted">
+                                            Set here your credentials to synchronize CVA and Odoo.
+                                        </div>
+                                        <br/>
+                                        <span class="o_form_label">Client Number</span>
+                                        <field class="oe_inline" name="client_number"/>
+                                        <br/>
+                                        <br/>
+                                        <span class="o_form_label">Main Location</span>
+                                        <field class="oe_inline" name="main_location"/>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 o_setting_box">
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">CVA Allowed Groups</span>
+                                        <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+                                        <div class="text-muted">
+                                            Groups allowed for Client Number
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="mt16">
+                                                <field name='allowed_groups' colspan='4' nolabel='1' widget='many2many_checkboxes'/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>        
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+</odoo>
