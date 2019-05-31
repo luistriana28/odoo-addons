@@ -152,6 +152,15 @@
                         <t t-esc="widget.format_currency(order.get_change())"/>
                         </td></tr>
                 </table>
+                <div>
+                    <strong>
+                        <span style="font-size:18px;text-align:center">¡¡OFERTA POR TIEMPO LIMITADO!!</span>
+                        <br/>
+                        <span>1 Pollo + 1 Refesco 1.5Lts + 1 Papas a la francesa por $185 pesos</span>
+                        <br/>
+                        <span>Válido 10 días a partir de tu compra.</span>
+                    </strong>
+                </div>
             </div>
         </t>
     </t>
