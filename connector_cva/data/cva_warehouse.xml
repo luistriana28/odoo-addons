@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odoo>
-    <data noupdate="1">
+<odoo noupdate="1">
         <record id="cva_main_location" model="stock.location">
             <field name="name">CVA</field>
             <field name="location_id" ref="stock.stock_location_suppliers"/>
@@ -136,5 +135,4 @@
             <field name="usage">internal</field>
             <field name="location_id" ref="cva_main_location"/>
         </record>
-    </data>
 </odoo>

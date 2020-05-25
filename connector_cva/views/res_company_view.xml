@@ -5,14 +5,36 @@
         <field name="model">res.company</field>
         <field name="inherit_id" ref="base.view_company_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group[1]/group[3]" position="after">
-                <group>
-                    <label for="cva_user" string="CVA User"/>
-                    <div class="o_address_format">
-                        <field name="cva_user"/>
-                    </div>
-                </group>
-            </xpath>
+            <notebook position="inside">
+                <page string="CVA">
+                     <group>
+                        <group>
+                            <label for="cva_user" string="CVA User"/>
+                            <div class="o_address_format">
+                                <field name="cva_user"/>
+                            </div>
+                            <span class="o_form_label">Main Location</span>
+                            <field class="oe_inline" name="cva_main_location"/>
+                         </group>
+                         <group>
+                            <span class="o_form_label">CVA Allowed Groups</span>
+                            <span class="fa fa-lg fa-building-o" title="Values set here are company-specific." aria-label="Values set here are company-specific." groups="base.group_multi_company" role="img"/>
+
+                            <div class="mt16">
+                                <field name="cva_group" colspan="4" nolabel="1" widget="many2many_checkboxes"/>
+                            </div>
+                        </group>
+                    </group>
+                    <group>
+                        <div>
+                           <button string="Get products" name="get_products" type="object" icon="fa-plus"/> 
+                        </div>
+                        <div>
+                           <button string="Get groups" name="get_groups" type="object" icon="fa-barcode"/> 
+                        </div>
+                    </group>
+                </page>
+            </notebook>         
         </field>
     </record>
 </odoo>

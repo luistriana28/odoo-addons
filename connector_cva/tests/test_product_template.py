@@ -8,22 +8,13 @@ import requests
 
 
 class TestProductTemplate(TransactionCase):
-    """
-    This will test model product.template
-    """
     def setUp(self):
-        """
-        Define global variables
-        """
         super(TestProductTemplate, self).setUp()
         self.cva = self.env['res.config.settings']
         self.xml = requests.get('http://localhost:8069/connector_cva/static/'
                                 'src/xml/test.xml').content
 
     def test_10_update_price_multi(self):
-        """
-            test for methos update_price_multi
-        """
         product_tem = self.cva.create_product(etree.XML(self.xml)[1])
         product = product_tem.with_context(
             {'active_ids': product_tem.ids})

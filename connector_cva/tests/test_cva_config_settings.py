@@ -8,13 +8,7 @@ import requests
 
 
 class TestCvaConfigSettings(TransactionCase):
-    """
-    This will test model cva config settings
-    """
     def setUp(self):
-        """
-        Define global variables.
-        """
         super(TestCvaConfigSettings, self).setUp()
         self.cva = self.env['res.config.settings']
         self.xml = requests.get('http://localhost:8069/connector_cva/static/'
@@ -22,10 +16,6 @@ class TestCvaConfigSettings(TransactionCase):
         self.obj_product = self.env['product.template']
 
     def test_10_cva_config_settings_get_products(self):
-        """
-            test for methods get_products, update_product_qty
-            and connect_cva.
-        """
         cva = self.cva.create({
             'name': '40762',
             'main_location': self.env.ref('connector_cva.loc_torreon').id,
@@ -42,9 +32,6 @@ class TestCvaConfigSettings(TransactionCase):
         )
 
     def test_20_cva_config_settings_get_groups(self):
-        """
-            test for method get_groups
-        """
         cva = self.cva.create({
             'name': '40762',
             'main_location': self.env.ref('connector_cva.loc_torreon').id})
@@ -59,9 +46,6 @@ class TestCvaConfigSettings(TransactionCase):
         cva.get_products()
 
     def test_30_cva_config_settings_update_product_cron(self):
-        """
-            test for method update_product_cron
-        """
         cva = self.cva.create({
             'name': '40762',
             'main_location': self.env.ref('connector_cva.loc_torreon').id,
@@ -80,10 +64,6 @@ class TestCvaConfigSettings(TransactionCase):
         cva.update_product_cron()
 
     def test_40_cva_config_settings_create_products(self):
-        """
-            test for method create_product. create product - image
-            and create product - not image
-        """
         product_image = self.cva.create_product(etree.XML(self.xml)[0])
         if product_image.image_medium is not False:
             image = True

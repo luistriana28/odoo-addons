@@ -1,4 +1,4 @@
-# © <2019><Luis Triana><Jarsa Sistemas, S.A. de C.V.>
+# © <2020><Luis Triana><Jarsa Sistemas, S.A. de C.V.>
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, models
@@ -11,7 +11,7 @@ class ProductTemplate(models.Model):
     def update_price_multi(self, model=None):
         product_list = self.search(
             [('id', 'in', self.env.context['active_ids'])])
-        cva = self.env['res.config.settings']
+        cva = self.env['res.company']
         user_id = self.env.user.company_id.cva_user
         for product in product_list:
             params = {
@@ -20,10 +20,10 @@ class ProductTemplate(models.Model):
                 'MonedaPesos': '1',
                 'sucursales': '1',
             }
-            root = cva.connect_cva(params=params)
-            if not root >= 1:
+            connection = cva.connect_cva(params=params)
+            if connection < 1:
                 pass
-            for item in root:
+            for item in connection:
                 if item.findtext('clave') == product.default_code:
                     cva.update_product_qty(product.id, item)
                     product.standard_price = float(
