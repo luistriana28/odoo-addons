@@ -76,6 +76,7 @@ class ResConfigSettings(models.TransientModel):
             {'name': find('descripcion'),
              'default_code': find('clave'),
              'standard_price': float(find('precio')),
+             'list_price': float(find('precio') * 1.50),
              'description': _(
                 'Group\n%s\nSubgroup\n%s\nFicha Comercial\n%s\nFicha '
                 'Tecnica\n%s\n' % (find('grupo'), find('subgrupo'),

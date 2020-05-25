@@ -21,10 +21,13 @@ class ProductTemplate(models.Model):
                 'sucursales': '1',
             }
             root = cva.connect_cva(params=params)
-            if not root >= 1:
-                pass
-            for item in root:
-                if item.findtext('clave') == product.default_code:
-                    cva.update_product_qty(product.id, item)
-                    product.standard_price = float(
-                        item.findtext('precio'))
+            try:
+                for item in root:
+                    if item.findtext('clave') == product.default_code:
+                        cva.update_product_qty(product.id, item)
+                        product.standard_price = float(
+                            item.findtext('precio'))
+                        product.list_price = float(
+                            item.findtext('precio')) * 1.50
+            except ValueError:
+                print ("Oops! Something is wrong")
